@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Portal</title>
+  <!-- Netlify Identity Widget (handles /admin redirect after login) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Marked.js: renders Markdown body content -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+      background: #f7f8fa;
+      color: #1f2328;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 { font-size: 1.2rem; font-weight: 600; color: #1f2328; }
+    header p  { font-size: 0.875rem; color: #57606a; margin-top: 2px; }
+
+    .hero-image {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 36px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #57606a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+
+    /* Rich text body styles */
+    #body-content h1, #body-content h2, #body-content h3 {
+      margin: 20px 0 8px;
+      font-weight: 600;
+    }
+    #body-content h1 { font-size: 1.5rem; }
+    #body-content h2 { font-size: 1.25rem; }
+    #body-content h3 { font-size: 1.1rem; }
+    #body-content p  { margin: 0 0 12px; }
+    #body-content ul, #body-content ol { padding-left: 24px; margin-bottom: 12px; }
+    #body-content a  { color: #3b82d4; text-decoration: none; }
+    #body-content a:hover { text-decoration: underline; }
+    #body-content blockquote {
+      border-left: 3px solid #e5e7eb;
+      padding-left: 16px;
+      color: #57606a;
+      margin: 12px 0;
+    }
+    #body-content code {
+      background: #f7f8fa;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    #body-content pre {
+      background: #f7f8fa;
+      padding: 16px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    /* Links section */
+    .links-list { list-style: none; padding: 0; }
+    .links-list li { margin-bottom: 10px; }
+    .links-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #3b82d4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .links-list a::before { content: "→"; color: #57606a; }
+    .links-list a:hover { text-decoration: underline; }
+
+    /* Attachments section */
+    .attachments-list { list-style: none; padding: 0; }
+    .attachments-list li { margin-bottom: 10px; }
+    .attachments-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f7f8fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 8px 14px;
+      color: #1f2328;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    .attachments-list a::before { content: "⬇"; font-size: 0.85em; color: #57606a; }
+    .attachments-list a:hover { background: #e5e7eb; }
+
+    .hidden { display: none; }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #57606a;
+      border-top: 1px solid #e5e7eb;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1 id="page-title">Team Portal</h1>
+      <p id="page-subtitle"></p>
+    </div>
+  </header>
+
+  <img id="hero-img" class="hero-image hidden" alt="Hero image" />
+
+  <main>
+    <!-- Body / Rich Text -->
+    <div class="card" id="body-card">
+      <div id="body-content">Loading content…</div>
+    </div>
+
+    <!-- Links -->
+    <div class="card hidden" id="links-card">
+      <h2>Links</h2>
+      <ul class="links-list" id="links-list"></ul>
+    </div>
+
+    <!-- Attachments -->
+    <div class="card hidden" id="attachments-card">
+      <h2>Downloads</h2>
+      <ul class="attachments-list" id="attachments-list"></ul>
+    </div>
+  </main>
+
+  <footer>Team Portal &mdash; powered by Decap CMS + Netlify</footer>
+
+  <script>
+    // Redirect to /admin after Netlify Identity login
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+
+    // ---------- Front matter + markdown parser ----------
+    function parseFrontMatter(raw) {
+      const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+      if (!match) return { meta: {}, body: raw };
+
+      const meta = {};
+      let currentListKey = null;
+      let currentItem = null;
+
+      match[1].split('\n').forEach(line => {
+        // Top-level key: value
+        const topLevel = line.match(/^(\w+):\s*"?([^"]*)"?\s*$/);
+        // List item opener  "  - name: value"  or "  -" alone
+        const listItemStart = line.match(/^\s{2}-\s*$/);
+        const listItemKey   = line.match(/^\s{4}(\w+):\s*"?([^"]*)"?\s*$/);
+        const listKey       = line.match(/^(\w+):\s*$/);
+
+        if (listItemStart && currentListKey) {
+          currentItem = {};
+          meta[currentListKey].push(currentItem);
+        } else if (listItemKey && currentItem !== null) {
+          currentItem[listItemKey[1]] = listItemKey[2].trim();
+        } else if (listKey) {
+          currentListKey = listKey[1];
+          currentItem    = null;
+          meta[currentListKey] = [];
+        } else if (topLevel) {
+          currentListKey = null;
+          currentItem    = null;
+          meta[topLevel[1]] = topLevel[2].trim();
+        }
+      });
+
+      return { meta, body: match[2] };
+    }
+
+    fetch('/content/page.md')
+      .then(r => {
+        if (!r.ok) throw new Error('Could not load page content.');
+        return r.text();
+      })
+      .then(text => {
+        const { meta, body } = parseFrontMatter(text);
+
+        // Title & subtitle
+        if (meta.title)    document.getElementById('page-title').textContent    = meta.title;
+        if (meta.subtitle) document.getElementById('page-subtitle').textContent = meta.subtitle;
+        document.title = meta.title || 'Team Portal';
+
+        // Hero image
+        if (meta.hero_image) {
+          const img = document.getElementById('hero-img');
+          img.src = meta.hero_image;
+          img.classList.remove('hidden');
+        }
+
+        // Body (rich text / markdown)
+        document.getElementById('body-content').innerHTML =
+          body.trim() ? marked.parse(body) : '<p><em>No content yet. Visit /admin to add content.</em></p>';
+
+        // Links
+        const links = Array.isArray(meta.links) ? meta.links : [];
+        if (links.length > 0) {
+          const ul = document.getElementById('links-list');
+          links.forEach(link => {
+            if (!link.url) return;
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label || link.url}</a>`;
+            ul.appendChild(li);
+          });
+          document.getElementById('links-card').classList.remove('hidden');
+        }
+
+        // Attachments
+        const attachments = Array.isArray(meta.attachments) ? meta.attachments : [];
+        if (attachments.length > 0) {
+          const ul = document.getElementById('attachments-list');
+          attachments.forEach(att => {
+            if (!att.file) return;
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${att.file}" download>${att.name || att.file}</a>`;
+            ul.appendChild(li);
+          });
+          document.getElementById('attachments-card').classList.remove('hidden');
+        }
+      })
+      .catch(err => {
+        document.getElementById('body-content').innerHTML =
+          `<p style="color:#d73a49">${err.message}</p>`;
+      });
+  </script>
+</body>
+</html>

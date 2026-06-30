@@ -1,0 +1,34 @@
+backend:
+  name: github
+  repo: GeekJenAI/team-portal
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "page"
+    label: "Landing Page"
+    files:
+      - label: "Main Page"
+        name: "main"
+        file: "content/page.md"
+        fields:
+          - { label: "Page Title",    name: "title",      widget: "string" }
+          - { label: "Subtitle",      name: "subtitle",   widget: "string" }
+          - { label: "Hero Image",    name: "hero_image", widget: "image", required: false }
+          - { label: "Body Content",  name: "body",       widget: "markdown" }
+          - label: "Links"
+            name: "links"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL",   name: "url",   widget: "string" }
+          - label: "File Attachments"
+            name: "attachments"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Display Name", name: "name", widget: "string" }
+              - { label: "File",         name: "file", widget: "file"   }

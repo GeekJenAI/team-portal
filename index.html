@@ -8,6 +8,8 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <!-- Marked.js: renders Markdown body content -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- js-yaml: properly parses YAML front matter -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -179,36 +181,13 @@
     function parseFrontMatter(raw) {
       const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
       if (!match) return { meta: {}, body: raw };
-
-      const meta = {};
-      let currentListKey = null;
-      let currentItem = null;
-
-      match[1].split('\n').forEach(line => {
-        // Top-level key: value
-        const topLevel = line.match(/^(\w+):\s*"?([^"]*)"?\s*$/);
-        // List item opener  "  - name: value"  or "  -" alone
-        const listItemStart = line.match(/^\s{2}-\s*$/);
-        const listItemKey   = line.match(/^\s{4}(\w+):\s*"?([^"]*)"?\s*$/);
-        const listKey       = line.match(/^(\w+):\s*$/);
-
-        if (listItemStart && currentListKey) {
-          currentItem = {};
-          meta[currentListKey].push(currentItem);
-        } else if (listItemKey && currentItem !== null) {
-          currentItem[listItemKey[1]] = listItemKey[2].trim();
-        } else if (listKey) {
-          currentListKey = listKey[1];
-          currentItem    = null;
-          meta[currentListKey] = [];
-        } else if (topLevel) {
-          currentListKey = null;
-          currentItem    = null;
-          meta[topLevel[1]] = topLevel[2].trim();
-        }
-      });
-
-      return { meta, body: match[2] };
+      try {
+        const meta = jsyaml.load(match[1]) || {};
+        return { meta, body: match[2] };
+      } catch (e) {
+        console.warn('Front matter parse error:', e);
+        return { meta: {}, body: raw };
+      }
     }
 
     fetch('/content/page.md')

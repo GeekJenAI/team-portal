@@ -6,6 +6,8 @@ links: []
 attachments:
   - name: Singapore Tech Data Vendor Line Card
     file: /uploads/tech-data-line-card-jan-2026-.pdf
+  - name: TD Singapore - IBM Team
+    file: /uploads/td-singapore-ibm-team.png
 ---
 <br />
 
@@ -26,7 +28,7 @@ We are dedicated to uniting compelling IT products, services and solutions from 
 
 ## IBM's Market Focus
 
-![IBM market focus 2026](/uploads/ibm-market-focus.png)
+![IBM market focus 2026](/uploads/ibm-market-focus.png "IBM market focus 2026")
 
 <br />
 

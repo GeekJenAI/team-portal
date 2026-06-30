@@ -9,14 +9,14 @@
  * Replace "Inter" with any font name from that list.
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* No external font import needed — Arial is a system font */
 
 /* ── Base body ── */
 body,
 [class*="css-"] {
-  font-family: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif !important;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
   font-size: 15px !important;
-  line-height: 1.6 !important;
+  line-height: 1.65 !important;
 }
 
 /* ── Headings ── */
@@ -34,7 +34,7 @@ p, li, td, th {
 [class*="ToolbarButton"],
 [class*="toolbar"] button,
 [class*="EditorControl"] {
-  font-family: "Inter", system-ui, sans-serif !important;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
   font-size: 13px !important;
 }
 
@@ -42,9 +42,9 @@ p, li, td, th {
 label,
 [class*="ControlLabel"],
 [class*="label"] {
-  font-family: "Inter", system-ui, sans-serif !important;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
   font-size: 13px !important;
-  font-weight: 500 !important;
+  font-weight: 700 !important;
 }
 
 /* ── Input fields ── */
@@ -53,6 +53,6 @@ input[type="url"],
 textarea,
 [class*="TextInput"],
 [class*="input"] {
-  font-family: "Inter", system-ui, sans-serif !important;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
   font-size: 14px !important;
 }

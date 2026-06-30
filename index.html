@@ -21,9 +21,11 @@
 
     .hero-image {
       width: 100%;
-      max-height: 340px;
-      object-fit: cover;
+      max-height: 400px;
+      object-fit: contain;
+      object-position: center;
       display: block;
+      background: #000;
     }
 
     main {
@@ -80,6 +82,15 @@
       padding: 16px;
       border-radius: 6px;
       overflow-x: auto;
+    }
+
+    /* Inline images inside rich text body */
+    #body-content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      margin: 12px 0;
     }
 
     /* Links section */

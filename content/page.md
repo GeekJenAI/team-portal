@@ -11,9 +11,9 @@ attachments:
 ---
 <br />
 
-TechData, a TD SYNNEX company, is a leading global distributor and solutions aggregator for the IT ecosystem. We’re an innovative partner helping business partners maximise the value of technology investments, demonstrate business outcomes and unlock growth opportunities.
+# We Make IBM Simple
 
-We are dedicated to uniting compelling IT products, services and solutions from best-in-class technology vendors. Our edge-to-cloud portfolio is anchored in some of the highest-growth technology segments including Hybrid Cloud, Security, AI, Big Data/Analytics, Automation, Sustainability, IoT, Mobility and everything as a service.
+![](/uploads/td-coe.png)
 
 <hr>
 

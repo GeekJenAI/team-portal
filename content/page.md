@@ -15,6 +15,14 @@ attachments:
 
 ![TD-IBM relationship](/uploads/td-ibm-relationship.png)
 
+<br />
+
+## <div style="text-align: center;">Make solving today’s toughest challenges easy with the TD SYNNEX IBM team by your side.</div>
+
+<div style="text-align: center;"><form action="https://example.com" method="get"> <button type="submit">Let's Get Started</button></form></div>
+
+<br />
+
 <hr>
 
 <br />

@@ -292,7 +292,7 @@
       }
     }
 
-    fetch('/content/page.md')
+    fetch('content/page.md')
       .then(r => {
         if (!r.ok) throw new Error('Could not load page content.');
         return r.text();

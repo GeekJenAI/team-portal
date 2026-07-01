@@ -17,7 +17,7 @@ attachments:
 
 <br />
 
-## <div style="text-align: center;">Make solving today’s toughest challenges easy with the TD SYNNEX IBM team by your side.</div>
+## <div style="text-align: center;">Your fastest path to IBM's portfolio — backed by regional expertise and global reach.</div>
 
 <div style="text-align: center;"><form action="https://example.com" method="get"> <button type="submit">Let's Get Started</button></form></div>
 

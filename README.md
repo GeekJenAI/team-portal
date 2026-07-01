@@ -1,69 +1,82 @@
 # Team Portal
 
-A corporate landing page powered by [Decap CMS](https://decapcms.org/) and hosted on [Netlify](https://netlify.com).
+A corporate landing page powered by [Decap CMS](https://decapcms.org/) and hosted on [GitHub Pages](https://pages.github.com/).
 
 ## Features
 
 - ✅ Public landing page with rich text, images, links and file downloads
 - ✅ Browser-based CMS editor at `/admin` — no code needed to update content
-- ✅ Invite-only editor access (2 editors)
+- ✅ Editor access controlled via GitHub repository permissions
 - ✅ All content and uploads stored in this Git repository
 
 ## Project Structure
 
 ```
-team-portal/
+tdsgibm-team-portal/
 ├── admin/
 │   ├── index.html          # CMS editor UI
 │   └── config.yml          # CMS field definitions
 ├── content/
 │   └── page.md             # Page content (front matter + markdown body)
 ├── uploads/                # Images and file attachments (managed by CMS)
-├── index.html              # Public landing page
-└── netlify.toml            # Netlify build and header config
+└── index.html              # Public landing page
 ```
 
 ## Setup Instructions
 
-### 1. Update `admin/config.yml`
+### 1. Create a GitHub OAuth App
 
-Replace the placeholder in `config.yml` with your GitHub username:
+1. Go to **GitHub → Settings → Developer settings → OAuth Apps → New OAuth App**
+2. Fill in the fields:
+   - **Application name:** Team Portal CMS (or any name)
+   - **Homepage URL:** `https://YOUR_USERNAME.github.io/tdsgibm-team-portal`
+   - **Authorization callback URL:** `https://api.netlify.com/auth/callback`
+     *(Decap CMS uses this public OAuth relay regardless of hosting platform)*
+3. Click **Register application**
+4. Note the **Client ID** and click **Generate a new client secret** — save both
+
+### 2. Register the OAuth App with Decap CMS
+
+Decap CMS needs a small backend proxy to exchange the OAuth token. The simplest option is the free **[netlify-cms-github-oauth-provider](https://github.com/vencax/netlify-cms-github-oauth-provider)** or the managed relay already built into Decap.
+
+> **Easiest path:** Use Decap's hosted proxy by adding `base_url` to the backend config in `admin/config.yml`:
 
 ```yaml
 backend:
   name: github
-  repo: GeekJenAI/team-portal
+  repo: GeekJenAI/tdsgibm-team-portal
+  branch: main
+  base_url: https://api.netlify.com   # public OAuth relay — no Netlify account needed
 ```
 
-### 2. Push to GitHub
+This is already configured. No extra server needed.
+
+### 3. Push to GitHub
 
 ```bash
-git init
 git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/team-portal.git
-git push -u origin main
+git commit -m "Migrate to GitHub Pages"
+git push origin main
 ```
 
-### 3. Deploy on Netlify
+### 4. Enable GitHub Pages
 
-1. Go to [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project**
-2. Connect to GitHub and select this repo
-3. Build command: *(leave blank)*
-4. Publish directory: `.`
-5. Click **Deploy site**
+1. Go to your repository on GitHub
+2. **Settings → Pages → Source → Deploy from a branch**
+3. Set branch to **main**, folder to **/ (root)**
+4. Click **Save** — your site will be live at `https://YOUR_USERNAME.github.io/tdsgibm-team-portal`
 
-### 4. Enable Identity & Git Gateway
+### 5. Grant Editor Access
 
-1. Netlify dashboard → **Site configuration → Identity → Enable Identity**
-2. Set registration to **Invite only**
-3. Scroll to **Services → Git Gateway → Enable Git Gateway**
-4. **Identity → Invite users** → invite both editors by email
+Editors log in to `/admin` using their **GitHub account**. They must have **write (push) access** to the repository to save content via the CMS.
 
-### 5. Edit Content
+To invite an editor:
+1. Go to your repo → **Settings → Collaborators → Add people**
+2. Enter their GitHub username and set role to **Write**
 
-Navigate to `https://your-site.netlify.app/admin` and log in with your invited email.
+### 6. Edit Content
+
+Navigate to `https://YOUR_USERNAME.github.io/tdsgibm-team-portal/admin` and click **Login with GitHub**.
 
 ## Editing Content
 

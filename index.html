@@ -6,8 +6,6 @@
   <title>TechData Singapore - IBM Team Landing Page</title>
   <meta property="og:title" content="TechData Singapore - IBM Team Landing Page" />
   <meta property="og:type" content="website" />
-  <!-- Netlify Identity Widget (handles /admin redirect after login) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <!-- Marked.js: renders Markdown body content -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <!-- js-yaml: properly parses YAML front matter -->
@@ -281,17 +279,6 @@
   </footer>
 
   <script>
-    // Redirect to /admin after Netlify Identity login
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        if (!user) {
-          window.netlifyIdentity.on('login', () => {
-            document.location.href = '/admin/';
-          });
-        }
-      });
-    }
-
     // ---------- Front matter + markdown parser ----------
     function parseFrontMatter(raw) {
       const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);

@@ -50,7 +50,7 @@ The Resources You Need to Succeed.
 
 ![TechData Centre of Excellence](/uploads/td-coe.png "TechData Centre of Excellence")
 
-Contact our sales representative to request for TechData Centre of Excellence IBM Solutions Catalogue or request a TechData Centre of Excellence Demo.
+Reach out to our sales representative to request the Tech Data Centre of Excellence IBM Solutions Catalogue or schedule a Tech Data Centre of Excellence demo.
 
 <br />
 

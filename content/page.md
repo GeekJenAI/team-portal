@@ -67,6 +67,8 @@ Turning Data into Revenue-Driving Action.
 
 <br />
 
+# Let's Connect
+
 <div style="text-align: center;">Let me know if you have any questions and I look forward to speaking soon.
 
 <span style="color: #005758;">**Kaitlyn Shi |** BDM - IBM Automation & Data</span>

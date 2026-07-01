@@ -13,16 +13,9 @@ attachments:
 
 # We Make IBM Simple
 
-![](/uploads/td-ibm-relationship.png)
+![TD-IBM relationship](/uploads/td-ibm-relationship.png)
 
 <hr>
-
-## How to get started with TechData and IBM
-
-* **Step 1: [Sign up with TechData](https://www.techdata.com/sg/en/partner-with-us/become-reseller.html)**
-* **Step 2: [Sign up to the IBM Partner Plus Program](https://www.ibm.com/partnerplus/resources/guide)**
-* **Step 3: [Onboarding with IBM](https://www.ibm.com/account/reg/us-en/signup?formid=urx-31628&bpid=18z7gnmk)**
-* **Step 4: [Go-to-Market with IBM](https://www.ibm.com/resources/guides/gtm-guide/)**
 
 <br />
 

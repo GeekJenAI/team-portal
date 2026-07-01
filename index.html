@@ -292,7 +292,8 @@
       }
     }
 
-    fetch('content/page.md')
+    const base = document.querySelector('base')?.href || (location.origin + location.pathname.replace(/\/[^/]*$/, '/'));
+    fetch(base + 'content/page.md')
       .then(r => {
         if (!r.ok) throw new Error('Could not load page content.');
         return r.text();

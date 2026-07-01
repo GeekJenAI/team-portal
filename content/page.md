@@ -13,7 +13,7 @@ attachments:
 
 # We Make IBM Simple
 
-![](/uploads/td-coe.png)
+![](/uploads/td-ibm-relationship.png)
 
 <hr>
 

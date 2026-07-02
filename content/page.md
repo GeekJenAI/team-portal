@@ -19,7 +19,7 @@ attachments:
 
 ## <div style="text-align: center;">Your fastest path to IBM's portfolio — backed by regional expertise and global reach.</div>
 
-<div style="text-align: center;"><a href="[https://example.com](https://forms.office.com/r/fjVERFjtwz)" style="display: inline-block; padding: 12px 24px; background-color: #005758; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: sans-serif;">Get Started Today!</a></div>
+<div style="text-align: center;"><a href="https://forms.office.com/r/fjVERFjtwz" style="display: inline-block; padding: 12px 24px; background-color: #005758; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: sans-serif;">Get Started Today!</a></div>
 
 <br />
 
